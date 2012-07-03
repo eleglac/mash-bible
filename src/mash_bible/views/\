@@ -1,0 +1,14 @@
+(ns mash-bible.views.welcome
+
+  (:require [mash-bible.views.common :as common]
+            [noir.content.getting-started])
+  (:use [noir.core :only [defpage]]
+        [hiccup.core :only [html]]))
+
+(defpage "/welcome" []
+         (common/layout
+           [:p "Welcome to mash-bible"]))
+
+(defpage "/" []
+  (common/layout
+    [:h1 "this is a page yo"]))
