@@ -18,7 +18,7 @@
 
 (defpartial cont [ssnum epnum]
   (let [sym-to-num {:One 1, :Two 2, :Three 3, :Four 4, :Five 5, :Six 6, :Seven 7, :Eight 8, :Nine 9, :Ten 10, :Eleven 11}
-        path       "/mash-bible/resources/public/eps/"]
+        path       "/app/resources/public/eps/"]
     (->> (str  path (sym-to-num (keyword ssnum)) " x " epnum ".html")
          (slurp)
          ((fn [ep] [:div#content ep])))))
@@ -35,7 +35,7 @@
     [:h2 "Season " ssn]
     [:ul
       (let [ssn-to-num {"One" 1, "Two" 2, "Three" 3, "Four" 4, "Five" 5, "Six" 6, "Seven" 7, "Eight" 8, "Nine" 9, "Ten" 10 "Eleven" 11}
-            path       "/mash-bible/resources/public/eps/"]
+            path       "/app/resources/public/eps/"]
       (map 
         (fn [foo] 
           [:li 
