@@ -27,12 +27,14 @@
 (defpage "/" []
   (common/layout
     (common/sidebar ssn-to-eplist)
+    (common/ad)
     [:div#content "This is the MASH Bible!  So far it's not much, but there is a full episode guide."]
     (common/footer)))
 
 (defpage [:get "/episode/:ssnum"] {:keys [ssnum]}  
   (common/layout
-    (common/sidebar ssn-to-eplist) 
+    (common/sidebar ssn-to-eplist)
+    (common/ad)
     (->>
       (keyword ssnum)
       (ssn-to-eplist)
@@ -41,7 +43,8 @@
 
 (defpage [:get "/episode/:ssnum/:epnum"] {:keys [ssnum epnum]}  
   (common/layout
-    (common/sidebar ssn-to-eplist) 
+    (common/sidebar ssn-to-eplist)
+    (common/ad)
     (common/cont ssnum epnum)
     (common/footer)))
 

@@ -7,7 +7,7 @@
 (defpartial header [& content]
   [:div#header
     [:h1 "The M*A*S*H Bible"]
-    [:h3 "Did anyone ever tell you, you have the voice of a songbird slowly drowning in tar?"]])
+    [:h3 "A page with so much <body> it should be continued on the next page."]])
 
 (defpartial sidebar [ep-list]
   [:div#sidebar
@@ -15,6 +15,18 @@
       [:li [:a {:href "/"} "Home"]]
       (map (fn [lol] [:li [:a {:href (str "/episode/" (name lol))} "Season " lol]]) (keys ep-list))        
       [:li "Search"]]])
+
+(defpartial ad []
+  [:div#ad
+    [:script {:type "text/javascript"}
+     "<!--
+      google_ad_client = \"ca-pub-7447725015053613\";
+      /* Sidebar text ad */
+      google_ad_slot = \"5825854919\";
+      google_ad_width = 200;
+      google_ad_height = 200;
+      //-->"]     
+    [:script {:type "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"}]])
 
 (defpartial cont [ssnum epnum]
   (let [sym-to-num {:One 1, :Two 2, :Three 3, :Four 4, :Five 5, :Six 6, :Seven 7, :Eight 8, :Nine 9, :Ten 10, :Eleven 11}
