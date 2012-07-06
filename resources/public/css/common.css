@@ -45,7 +45,7 @@ body
   margin-right:     50px;
   margin-left:      auto;
   position:         relative;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
   }
 
 #footer
@@ -56,7 +56,7 @@ body
     position:       absolute;
     bottom:         0;
     width:          100%;
-    height:         50px;
+    height:         100px;
     padding:        10px;
   }
 
