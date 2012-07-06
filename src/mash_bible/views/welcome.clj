@@ -52,5 +52,5 @@
     (common/footer)))
 
 (defpage "/robots.txt" []
-  (slurp "/resources/public/robots.txt"))
+  (slurp "/app/resources/public/robots.txt"))
 
