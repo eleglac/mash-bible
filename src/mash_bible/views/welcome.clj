@@ -45,3 +45,12 @@
     (common/cont ssnum epnum)
     (common/footer)))
 
+(defpage [:get "/episode/:ssnum/:epnum/teleplay"] {:keys [ssnum epnum]}
+  (common/layout
+    (common/sidebar ssn-to-eplist)
+    (common/teleplay ssnum epnum)
+    (common/footer)))
+
+(defpage "/robots.txt" []
+  (slurp "/resources/public/robots.txt"))
+
