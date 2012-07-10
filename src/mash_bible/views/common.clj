@@ -1,7 +1,11 @@
 (ns mash-bible.views.common
+<<<<<<< HEAD
 
   (require [mash-bible.views.util :as util]
            [clojure.string        :as s])
+=======
+  (require [mash-bible.views.util :as util])
+>>>>>>> parent of 5b6aca1... Formatting of sidebar links
 
   (:use [noir.core :only [defpartial]]
         [hiccup.page-helpers]))
@@ -20,10 +24,14 @@
   [:div#sidebar
     [:ul
       [:li [:a {:href "/"} "Home"]]
+<<<<<<< HEAD
       (map 
         (fn [lol] 
           [:li [:a {:href (str "/" (name lol))} "Season " (s/capitalize (name lol))]]) 
         (keys util/ssn-to-eplist))
+=======
+      (map (fn [lol] [:li [:a {:href (str "/" (name lol))} "Season " lol]]) (keys util/ssn-to-eplist))
+>>>>>>> parent of 5b6aca1... Formatting of sidebar links
       [:li "Search"]]
     (ad)])
 
@@ -33,9 +41,9 @@
     (slurp)
     ((fn [ep]
        [:div#content 
-         ep
-         [:br] [:br]
-         [:a {:href (str "/" (name ssnum) "/" epnum "/transcript")} "Episode Transcript"]]))))
+          ep
+          [:br] [:br]
+          [:a {:href (str "/" (name ssnum) "/" epnum "/transcript")} "Episode Transcript"]]))))
 
 (defpartial transcript [ssnum epnum] 
   (->> (str util/transcripts (util/sym-to-num (keyword ssnum)) " x " epnum ".txt")
@@ -51,7 +59,7 @@
 
 (defpartial episode-list [ssn eps]
   [:div#content
-    [:h2 "Season " (s/capitalize (name ssn))]
+    [:h2 "Season " ssn]
     [:ul 
       (map 
         (fn [foo] 
