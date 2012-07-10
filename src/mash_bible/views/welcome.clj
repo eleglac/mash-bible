@@ -24,13 +24,13 @@
     (common/footer)))
 
 (defpage [:get "/:ssnum/:epnum"] {:keys [ssnum epnum]}
-  (common/layout (str (util/get-ep-title ssnum (util/parse-int epnum)) " - Summary - The M*A*S*H Bible")
+  (common/layout (str (util/get-ep-title ssnum (dec (util/parse-int epnum))) " - Summary - The M*A*S*H Bible")
     (common/sidebar)
     (common/cont ssnum epnum)
     (common/footer)))
 
 (defpage [:get "/:ssnum/:epnum/transcript"] {:keys [ssnum epnum]}
-  (common/layout (str (util/get-ep-title ssnum (util/parse-int epnum)) " - Transcript - The M*A*S*H Bible")
+  (common/layout (str (util/get-ep-title ssnum (dec (util/parse-int epnum))) " - Transcript - The M*A*S*H Bible")
     (common/sidebar)
     (common/transcript ssnum epnum)
     (common/footer)))
