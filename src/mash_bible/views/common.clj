@@ -1,8 +1,9 @@
-(ns mash-bible.views.common 
+(ns mash-bible.views.common
+  (require [mash-bible.views.util :as util])
+
   (:use [noir.core :only [defpartial]]
         [hiccup.page-helpers]
-        [clojure.string :only [split-lines]]
-        [mash-bible.views.logic]))
+        [clojure.string :only [split-lines]] ))
 
 (defpartial header [& content]
   [:div#header
@@ -14,30 +15,28 @@
     (include-js "/js/ads.js")
     (include-js "http://pagead2.googlesyndication.com/pagead/show_ads.js")])
 
-(defpartial sidebar [ep-list]
+(defpartial sidebar []
   [:div#sidebar
     [:ul
       [:li [:a {:href "/"} "Home"]]
-      (map (fn [lol] [:li [:a {:href (str "/" (name lol))} "Season " lol]]) (keys ep-list))        
+      (map (fn [lol] [:li [:a {:href (str "/" (name lol))} "Season " lol]]) (keys util/ssn-to-eplist))
       [:li "Search"]]
     (ad)])
 
 (defpartial cont [ssnum epnum]
-  (let [sym-to-num {:One 1, :Two 2, :Three 3, :Four 4, :Five 5, :Six 6, :Seven 7, :Eight 8, :Nine 9, :Ten 10, :Eleven 11}
-        path       "/app/resources/public/eps/"]
-    (->> (str path (sym-to-num (keyword ssnum)) " x " epnum ".html")
-         (slurp)
-         ((fn [ep] [:div#content 
-                      ep
-                      [:br]
-                      [:a {:href (str "/episode/" (name ssnum) "/" epnum "/teleplay")} "Quotes and Scene Summary"]])))))
+  (->> 
+    (str util/summaries (util/sym-to-num (keyword ssnum)) " x " epnum ".html")
+    (slurp)
+    ((fn [ep]
+       [:div#content 
+          ep
+          [:br] [:br]
+          [:a {:href (str "/" (name ssnum) "/" epnum "/transcript")} "Episode Transcript"]]))))
 
-(defpartial transcript [ssnum epnum]
-  (let [sym-to-num {:One 1, :Two 2, :Three 3, :Four 4, :Five 5, :Six 6, :Seven 7, :Eight 8, :Nine 9, :Ten 10, :Eleven 11}
-        path       "/app/resources/public/eps/"]
-    (->> (str path (sym-to-num (keyword ssnum)) " x " epnum ".txt")
-         (slurp)
-         ((fn [teleplay] [:div#content teleplay])))))
+(defpartial transcript [ssnum epnum] 
+  (->> (str util/transcripts (util/sym-to-num (keyword ssnum)) " x " epnum ".txt")
+       (slurp)
+       ((fn [transcript] [:div#content transcript]))))
 
 (defpartial footer [& content]
   [:div#footer
@@ -49,25 +48,28 @@
 (defpartial episode-list [ssn eps]
   [:div#content
     [:h2 "Season " ssn]
-    [:ul
-      (let [ssn-to-num {"One" 1, "Two" 2, "Three" 3, "Four" 4, "Five" 5, "Six" 6, "Seven" 7, "Eight" 8, "Nine" 9, "Ten" 10 "Eleven" 11}
-            path       "/app/resources/public/eps/"]
+    [:ul 
       (map 
         (fn [foo] 
           [:li 
             [:a  {:href (str "/" ssn "/" foo)} foo "   "
-             (nth (split-lines (slurp (str path (ssn-to-num ssn) ".txt"))) (dec (parse-int foo)))]]) 
-        eps))]])
+             (nth (split-lines (slurp (str util/titles (util/sym-to-num ssn) ".txt"))) (dec (util/parse-int foo)))]]) 
+        eps)]])
 
-(defpartial layout [& content]
+(defpartial layout [title & content]
   (html5
     [:head
-      [:title "This is the M*A*S*H Bible.  I love being both of us."]
+      [:title title]
       (include-css "/css/common.css")]
       [:body
         [:div#wrapper
           (header)
           content]]))
 
-
+(defpartial greeting []
+  [:p "Welcome to the M*A*S*H Bible, a website devoted to the CBS television show M*A*S*H."]
+  [:br]
+  [:p "At present, the site hosts an episode guide for all eleven seasons, including the finale.
+       The site is still a work-in-progress, however. Eventually, transcripts for all 261
+       episodes will also be available, so check back frequently!"])
 

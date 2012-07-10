@@ -1,53 +1,36 @@
 (ns mash-bible.views.welcome
 
   (:require [mash-bible.views.common :as common]
-            [mash-bible.views.logic  :as logic]
+            [mash-bible.views.util   :as util]
             [noir.content.getting-started])
 
   (:use [noir.core :only [defpage]]
         [hiccup.core :only [html]]))
 
-(defn range-strs [n]
-  (map str (range 1 (inc n)))) 
-
-(def ssn-to-eplist
-  (array-map 
-    :One    (range-strs 24) 
-    :Two    (range-strs 24) 
-    :Three  (range-strs 24) 
-    :Four   (range-strs 25) 
-    :Five   (range-strs 25) 
-    :Six    (range-strs 25) 
-    :Seven  (range-strs 25) 
-    :Eight  (range-strs 25) 
-    :Nine   (range-strs 20) 
-    :Ten    (range-strs 22) 
-    :Eleven (range-strs 16)))
-
 (defpage "/" []
-  (common/layout
-    (common/sidebar ssn-to-eplist)
-    [:div#content "This is the MASH Bible!  So far it's not much, but there is a full episode guide."]
+  (common/layout "The M*A*S*H Bible, the #1 resource for fans of televisions' M*A*S*H 4077th - Home"
+    (common/sidebar)
+    (common/greeting)
     (common/footer)))
 
 (defpage [:get "/:ssnum"] {:keys [ssnum]}  
-  (common/layout
-    (common/sidebar ssn-to-eplist)
+  (common/layout (str "The M*A*S*H Bible, the #1 resource for fans of televisions' M*A*S*H 4077th - Season " (util/ssn-to-eplist (keyword ssnum)) " Guide")
+    (common/sidebar)
     (->>
       (keyword ssnum)
-      (ssn-to-eplist)
+      (util/ssn-to-eplist)
       (common/episode-list ssnum))
     (common/footer)))
 
 (defpage [:get "/:ssnum/:epnum"] {:keys [ssnum epnum]}  
-  (common/layout
-    (common/sidebar ssn-to-eplist)
+  (common/layout "The M*A*S*H Bible, the #1 resource for fans of the M*A*S*H 4077th - Episode Summary"
+    (common/sidebar)
     (common/cont ssnum epnum)
     (common/footer)))
 
 (defpage [:get "/:ssnum/:epnum/transcript"] {:keys [ssnum epnum]}
-  (common/layout
-    (common/sidebar ssn-to-eplist)
+  (common/layout "The M*A*S*H Bible, the #1 resource for fans of the M*A*S*H 4077th - Episode Transcript"
+    (common/sidebar)
     (common/transcript ssnum epnum)
     (common/footer)))
 
