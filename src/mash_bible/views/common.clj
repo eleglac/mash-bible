@@ -55,7 +55,7 @@
       (map 
         (fn [foo] 
           [:li 
-            [:a  {:href (str "/episode/" ssn "/" foo)} foo "   "
+            [:a  {:href (str "/" ssn "/" foo)} foo "   "
              (nth (split-lines (slurp (str path (ssn-to-num ssn) ".txt"))) (dec (parse-int foo)))]]) 
         eps))]])
 
