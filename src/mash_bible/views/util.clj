@@ -36,11 +36,11 @@
 (def titles 
   (str root "/resources/public/titles/"))
 
-(defn get-ep-title [ssn epnum]
-  (nth (s/split-lines (slurp (title-path ssn))) epnum))
-
 (defn summary-path [ssn epnum]
   (str summaries (sym-to-num (keyword ssn)) " x " epnum ".html"))
 
 (defn title-path [ssn]
   (str titles (name ssn) ".txt"))
+
+(defn get-ep-title [ssn epnum]
+  (nth (s/split-lines (slurp (title-path ssn))) epnum))
