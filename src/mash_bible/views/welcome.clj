@@ -14,7 +14,7 @@
     (common/footer)))
 
 (defpage [:get "/:ssnum"] {:keys [ssnum]}  
-  (common/layout (str "The M*A*S*H Bible, the #1 resource for fans of televisions' M*A*S*H 4077th - Episode Listing")
+  (common/layout (str "Episode Listing - The M*A*S*H Bible")
     (common/sidebar)
     (->>
       (keyword ssnum)
@@ -23,13 +23,13 @@
     (common/footer)))
 
 (defpage [:get "/:ssnum/:epnum"] {:keys [ssnum epnum]}  
-  (common/layout "The M*A*S*H Bible, the #1 resource for fans of the M*A*S*H 4077th - Episode Summary"
+  (common/layout "Episode Summary - The M*A*S*H Bible"
     (common/sidebar)
     (common/cont ssnum epnum)
     (common/footer)))
 
 (defpage [:get "/:ssnum/:epnum/transcript"] {:keys [ssnum epnum]}
-  (common/layout "The M*A*S*H Bible, the #1 resource for fans of the M*A*S*H 4077th - Episode Transcript"
+  (common/layout "Episode Transcript - The M*A*S*H Bible"
     (common/sidebar)
     (common/transcript ssnum epnum)
     (common/footer)))
