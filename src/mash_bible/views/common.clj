@@ -53,7 +53,7 @@
         (fn [foo] 
           [:li 
             [:a  {:href (str "/" ssn "/" foo)} foo "   "
-             (nth (split-lines (slurp (str util/titles "/" (name ssn) ".txt"))) (dec (util/parse-int foo)))]]) 
+             (nth (split-lines (slurp (util/title-path ssn))) (dec (util/parse-int foo)))]]) 
         eps)]])
 
 (defpartial layout [title & content]
@@ -67,9 +67,10 @@
           content]]))
 
 (defpartial greeting []
-  [:p "Welcome to the M*A*S*H Bible, a website devoted to the CBS television show M*A*S*H."]
-  [:br]
-  [:p "At present, the site hosts an episode guide for all eleven seasons, including the finale.
+  [:div#content
+    [:p "Welcome to the M*A*S*H Bible, a website devoted to the CBS television show M*A*S*H."] 
+    [:br] 
+    [:p "At present, the site hosts an episode guide for all eleven seasons, including the finale.
        The site is still a work-in-progress, however. Eventually, transcripts for all 261
-       episodes will also be available, so check back frequently!"])
+       episodes will also be available, so check back frequently!"]])
 

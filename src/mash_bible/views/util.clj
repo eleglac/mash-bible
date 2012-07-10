@@ -27,13 +27,16 @@
   "/app")
 
 (def summaries 
-  (str root "/resources/public/summaries"))
+  (str root "/resources/public/summaries/"))
 
 (def transcripts 
-  (str root "/resources/public/transcripts"))
+  (str root "/resources/public/transcripts/"))
 
 (def titles 
-  (str root "/resources/public/titles"))
+  (str root "/resources/public/titles/"))
 
 (defn summary-path [ssnum epnum]
   (str summaries (sym-to-num (keyword ssnum)) " x " epnum ".html"))
+
+(defn title-path [ssnum]
+  (str titles (name ssnum) ".txt"))
