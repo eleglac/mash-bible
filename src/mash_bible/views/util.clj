@@ -4,7 +4,7 @@
   (Integer. (re-find #"[0-9]+" s)))
 
 (defn range-strs [n]
-  (map str (range (inc n))))
+  (map str (rest (range (inc n)))))
 
 (def ssn-to-eplist
   (array-map
