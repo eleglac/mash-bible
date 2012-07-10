@@ -18,7 +18,7 @@
   [:div#sidebar
     [:ul
       [:li [:a {:href "/"} "Home"]]
-      (map (fn [lol] [:li [:a {:href (str "/episode/" (name lol))} "Season " lol]]) (keys ep-list))        
+      (map (fn [lol] [:li [:a {:href (str "/" (name lol))} "Season " lol]]) (keys ep-list))        
       [:li "Search"]]
     (ad)])
 
@@ -32,7 +32,7 @@
                       [:br]
                       [:a {:href (str "/episode/" (name ssnum) "/" epnum "/teleplay")} "Quotes and Scene Summary"]])))))
 
-(defpartial teleplay [ssnum epnum]
+(defpartial transcript [ssnum epnum]
   (let [sym-to-num {:One 1, :Two 2, :Three 3, :Four 4, :Five 5, :Six 6, :Seven 7, :Eight 8, :Nine 9, :Ten 10, :Eleven 11}
         path       "/app/resources/public/eps/"]
     (->> (str path (sym-to-num (keyword ssnum)) " x " epnum ".txt")

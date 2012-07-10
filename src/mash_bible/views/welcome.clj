@@ -30,7 +30,7 @@
     [:div#content "This is the MASH Bible!  So far it's not much, but there is a full episode guide."]
     (common/footer)))
 
-(defpage [:get "/episode/:ssnum"] {:keys [ssnum]}  
+(defpage [:get "/:ssnum"] {:keys [ssnum]}  
   (common/layout
     (common/sidebar ssn-to-eplist)
     (->>
@@ -39,16 +39,16 @@
       (common/episode-list ssnum))
     (common/footer)))
 
-(defpage [:get "/episode/:ssnum/:epnum"] {:keys [ssnum epnum]}  
+(defpage [:get "/:ssnum/:epnum"] {:keys [ssnum epnum]}  
   (common/layout
     (common/sidebar ssn-to-eplist)
     (common/cont ssnum epnum)
     (common/footer)))
 
-(defpage [:get "/episode/:ssnum/:epnum/teleplay"] {:keys [ssnum epnum]}
+(defpage [:get "/:ssnum/:epnum/transcript"] {:keys [ssnum epnum]}
   (common/layout
     (common/sidebar ssn-to-eplist)
-    (common/teleplay ssnum epnum)
+    (common/transcript ssnum epnum)
     (common/footer)))
 
 (defpage "/robots.txt" []
