@@ -14,7 +14,7 @@
     (common/footer)))
 
 (defpage [:get "/:ssnum"] {:keys [ssnum]}  
-  (common/layout (str "The M*A*S*H Bible, the #1 resource for fans of televisions' M*A*S*H 4077th - Season " (util/ssn-to-eplist (keyword ssnum)) " Guide")
+  (common/layout (str "The M*A*S*H Bible, the #1 resource for fans of televisions' M*A*S*H 4077th - Episode Listing")
     (common/sidebar)
     (->>
       (keyword ssnum)

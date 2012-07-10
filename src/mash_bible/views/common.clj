@@ -53,7 +53,7 @@
         (fn [foo] 
           [:li 
             [:a  {:href (str "/" ssn "/" foo)} foo "   "
-             (nth (split-lines (slurp (str util/titles (util/sym-to-num ssn) ".txt"))) (dec (util/parse-int foo)))]]) 
+             (nth (split-lines (slurp (str util/titles "/" (name ssn) ".txt"))) (dec (util/parse-int foo)))]]) 
         eps)]])
 
 (defpartial layout [title & content]
