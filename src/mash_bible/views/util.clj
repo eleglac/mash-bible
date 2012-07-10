@@ -1,7 +1,8 @@
-(ns mash-bible.views.util)
+(ns mash-bible.views.util
+  (require [clojure.string :as s]))
 
-(defn parse-int [s] 
-  (Integer. (re-find #"[0-9]+" s)))
+(defn parse-int [ss] 
+  (Integer. (re-find #"[0-9]+" ss)))
 
 (defn range-strs [n]
   (map str (rest (range (inc n)))))
@@ -35,8 +36,11 @@
 (def titles 
   (str root "/resources/public/titles/"))
 
-(defn summary-path [ssnum epnum]
-  (str summaries (sym-to-num (keyword ssnum)) " x " epnum ".html"))
+(defn get-ep-title [ssn epnum]
+  (nth (s/split-lines (slurp (title-path ssn))) epnum))
 
-(defn title-path [ssnum]
-  (str titles (name ssnum) ".txt"))
+(defn summary-path [ssn epnum]
+  (str summaries (sym-to-num (keyword ssn)) " x " epnum ".html"))
+
+(defn title-path [ssn]
+  (str titles (name ssn) ".txt"))

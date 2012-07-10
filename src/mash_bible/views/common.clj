@@ -1,10 +1,10 @@
 (ns mash-bible.views.common
+
   (require [mash-bible.views.util :as util]
            [clojure.string        :as s])
 
   (:use [noir.core :only [defpartial]]
-        [hiccup.page-helpers]
-        [clojure.string :only [split-lines]] ))
+        [hiccup.page-helpers]))
 
 (defpartial header [& content]
   [:div#header
@@ -20,7 +20,10 @@
   [:div#sidebar
     [:ul
       [:li [:a {:href "/"} "Home"]]
-      (map (fn [lol] [:li [:a {:href (str "/" (name lol))} "Season " (s/capitalize (name lol))]]) (keys util/ssn-to-eplist))
+      (map 
+        (fn [lol] 
+          [:li [:a {:href (str "/" (name lol))} "Season " (s/capitalize (name lol))]]) 
+        (keys util/ssn-to-eplist))
       [:li "Search"]]
     (ad)])
 
@@ -54,7 +57,7 @@
         (fn [foo] 
           [:li 
             [:a  {:href (str "/" ssn "/" foo)} foo "   "
-             (nth (split-lines (slurp (util/title-path ssn))) (dec (util/parse-int foo)))]]) 
+             (nth (s/split-lines (slurp (util/title-path ssn))) (dec (util/parse-int foo)))]]) 
         eps)]])
 
 (defpartial layout [title & content]

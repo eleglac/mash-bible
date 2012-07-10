@@ -1,6 +1,7 @@
 (ns mash-bible.views.welcome
 
-  (:require [mash-bible.views.common :as common]
+  (:require [clojure.string          :as s]
+            [mash-bible.views.common :as common]
             [mash-bible.views.util   :as util]
             [noir.content.getting-started])
 
@@ -14,7 +15,7 @@
     (common/footer)))
 
 (defpage [:get "/:ssnum"] {:keys [ssnum]}  
-  (common/layout (str "Episode Listing - The M*A*S*H Bible")
+  (common/layout (str "Season " (s/capitalize ssnum) " - Episode Listing - The M*A*S*H Bible")
     (common/sidebar)
     (->>
       (keyword ssnum)
@@ -23,13 +24,13 @@
     (common/footer)))
 
 (defpage [:get "/:ssnum/:epnum"] {:keys [ssnum epnum]}  
-  (common/layout "Episode Summary - The M*A*S*H Bible"
+  (common/layout (str (util/get-ep-title ssnum epnum) " - Summary - The M*A*S*H Bible")
     (common/sidebar)
     (common/cont ssnum epnum)
     (common/footer)))
 
 (defpage [:get "/:ssnum/:epnum/transcript"] {:keys [ssnum epnum]}
-  (common/layout "Episode Transcript - The M*A*S*H Bible"
+  (common/layout (str (util/get-ep-title ssnum epnum) " - Transcript - The M*A*S*H Bible")
     (common/sidebar)
     (common/transcript ssnum epnum)
     (common/footer)))
