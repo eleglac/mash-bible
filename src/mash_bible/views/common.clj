@@ -63,6 +63,7 @@
   (html5
     [:head
       [:title title]
+      [:meta {:name "description" :content "The M*A*S*H Bible aims to be the #1 web clearinghouse for information related to the CBS television show 'M*A*S*H'."}]
       (include-css "/css/common.css")]
       [:body
         [:div#wrapper
@@ -71,8 +72,7 @@
 
 (defpartial greeting []
   [:div#content
-    [:p "Welcome to the M*A*S*H Bible, a website devoted to the CBS television show M*A*S*H."] 
-    [:br] 
+    [:p "Welcome to the M*A*S*H Bible, a website devoted to the CBS television show M*A*S*H."]  
     [:p "At present, the site hosts an episode guide for all eleven seasons, including the finale.
        The site is still a work-in-progress, however. Eventually, transcripts for all 261
        episodes will also be available, so check back frequently!"]])

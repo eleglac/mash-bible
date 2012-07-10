@@ -9,7 +9,7 @@
         [hiccup.core :only [html]]))
 
 (defpage "/" []
-  (common/layout "The M*A*S*H Bible, the #1 resource for fans of televisions' M*A*S*H 4077th - Home"
+  (common/layout "Home - The M*A*S*H Bible"
     (common/sidebar)
     (common/greeting)
     (common/footer)))
