@@ -37,7 +37,3 @@
 
 (defpage "/robots.txt" []
   (slurp "/app/resources/public/robots.txt"))
-
-(defpage "/favicon.ico" []
-  (slurp "/app/resources/public/favicon.ico"))
-
