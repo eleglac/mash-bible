@@ -275,10 +275,14 @@
 <br>HAWKEYE: Are you in or not?
 <br>TRAPPER: Yeah.
 <br><br>: EXT OUTSIDE SWAMP
-<br>GEN. BARKER: Soldier!;soldier
-<br>GEN. BARKER: Which way to Colonel Blake's?;soldier
-<br>GEN. BARKER: Were ya born in that position?;soldier
-<br>GEN. BARKER: Dismissed.;soldier
+<br>GEN. BARKER: Soldier!
+<br>SOLDIER: Yes sir?
+<br>GEN. BARKER: Which way to Colonel Blake's?
+<br>SOLDIER: Twenty feet straight ahead, sir.
+<br>GEN. BARKER: Were ya born in that position?
+<br>SOLDIER: Yes sir - no sir!
+<br>GEN. BARKER: Dismissed.
+<br>SOLDIER: Yes sir!
 <br><br>: INT C.O.'S OFFICE
 <br>: RADAR is smoking a cigar and drinking brandy.
 <br>GEN. BARKER: What are you doing, Corporal?
