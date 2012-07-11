@@ -64,6 +64,7 @@
     [:head
       [:title title]
       [:meta {:name "description" :content "The M*A*S*H Bible aims to be the #1 web clearinghouse for information related to the CBS television show 'M*A*S*H'."}]
+      [:link {:rel "shortcut icon" :href "http://www.mashbible.com/favicon.ico"}]
       (include-css "/css/common.css")]
       [:body
         [:div#wrapper
