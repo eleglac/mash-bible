@@ -8,7 +8,7 @@
 (defpartial header [& content]
   [:div#header
     [:h1 "The M*A*S*H Bible"]
-    [:h3 "A page with so much body it should be continued on the next page."]])
+    [:h3 (get-rand-header)]])
 
 (defpartial ad []
   [:div#ad

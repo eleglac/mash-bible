@@ -27,6 +27,9 @@
 (def root 
   "/app")
 
+(def public
+  (str root "/resources/public/"))
+
 (def summaries 
   (str root "/resources/public/summaries/"))
 
@@ -44,3 +47,7 @@
 
 (defn get-ep-title [ssn epnum]
   (nth (s/split-lines (slurp (title-path ssn))) epnum))
+
+(defn get-rand-header []
+  (let [titles (s/split-lines (slurp (str public "headers.txt")))]
+    (rand-nth titles)))
