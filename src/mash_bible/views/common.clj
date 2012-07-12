@@ -40,7 +40,7 @@
 
 (defpartial transcript [ssnum epnum]  
   (let [script (str util/transcripts (util/sym-to-num (keyword ssnum)) " x " epnum ".txt")]
-    (try ([:div#content (slurp script)])
+    (try (fn [] [:div#content (slurp script)])
          (catch FileNotFoundException FNFE 
                 [:div#content "This transcript is not yet available! Check back later."]))))
 
