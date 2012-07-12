@@ -1,4 +1,6 @@
 (ns mash-bible.views.common
+  (:import java.io.FileNotFoundException)
+
   (:require [mash-bible.views.util :as util]
             [clojure.string        :as s])
 
@@ -36,10 +38,11 @@
          [:br] [:br]
          [:a {:href (str "/" (name ssnum) "/" epnum "/transcript")} "Episode Transcript"]]))))
 
-(defpartial transcript [ssnum epnum] 
-  (->> (str util/transcripts (util/sym-to-num (keyword ssnum)) " x " epnum ".txt")
-       (slurp)
-       ((fn [transcript] [:div#content transcript]))))
+(defpartial transcript [ssnum epnum]  
+  (let [script (str util/transcripts (util/sym-to-num (keyword ssnum)) " x " epnum ".txt")]
+    (try ([:div#content (slurp script)])
+         (catch FileNotFoundException FNFE 
+                [:div#content "This transcript is not yet available! Check back later."]))))
 
 (defpartial footer [& content]
   [:div#footer
