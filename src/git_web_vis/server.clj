@@ -1,4 +1,4 @@
-(ns mash-bible.server
+(ns git-web-vis.server
   (:require [noir.server :as server]))
 
 (server/load-views "src/git_web_vis/views/")
